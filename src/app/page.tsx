@@ -37,7 +37,7 @@ export default function Home() {
           </Link>
         </div>
         
-        {/* Scroll indicator - similar to Carlton Park */}
+    
         <div className="absolute bottom-12 left-0 right-0 flex flex-col items-center z-20">
           <span className="text-white text-xs tracking-widest mb-2">SCROLL</span>
           <div className="h-8 w-0.5 bg-white"></div>
@@ -89,7 +89,7 @@ export default function Home() {
         </div>
       </div>
       
-      {/* Full-width image section - like Carlton Park's lifestyle section */}
+
       <div className="h-screen relative flex items-center justify-center bg-black">
         {/* This would be a full-width background image */}
         <Image 
@@ -122,8 +122,8 @@ export default function Home() {
                src="/images/DJI_0054.jpg"
                alt="Description" 
                width={800}
-               height={600}
-               className="absolute -bottom-8 -right-8 w-full h-full object-cover"/>
+              height={600}
+               className="absolute -bottom-8 -right-8 w-full h-full object-cover bg-black"/>
             </div>
           </div>
           <div className="md:w-1/2 md:pl-12 text-black">
@@ -143,7 +143,7 @@ export default function Home() {
         </div>
       </div>
       
-      {/* Footer - minimal and elegant like Carlton Park */}
+
       <footer className="bg-black text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-16">
