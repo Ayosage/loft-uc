@@ -94,7 +94,7 @@ export default function Home() {
         {/* This would be a full-width background image */}
         <Image 
           src="/images/your-image.jpg"
-          alt="Extraordinary Amenities"
+          alt=""
           layout="fill"
           objectFit="cover"
           className="absolute inset-0"
