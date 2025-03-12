@@ -119,7 +119,7 @@ export default function Home() {
           <div className="md:w-1/2 mb-12 md:mb-0 md:pr-12">
             <div className="bg-gray-200 w-full h-96 relative">
               <Image 
-               src="/images/DJI_0054.jpg"
+               src="/images/DJI_0054.JPG"
                alt="Description" 
                width={800}
               height={600}
