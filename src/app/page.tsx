@@ -39,7 +39,7 @@ export default function Home() {
         
     
         <div className="absolute bottom-12 left-0 right-0 flex flex-col items-center z-20">
-          <span className="text-white text-xs tracking-widest mb-2">SCROLL</span>
+          {/* <span className="text-white text-xs tracking-widest mb-2">SCROLL</span> */}
           <div className="h-8 w-0.5 bg-white"></div>
         </div>
       </div>
@@ -142,58 +142,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
-
-      <footer className="bg-black text-white py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-            <div className="mb-12 md:mb-0">
-              <h3 className="text-2xl font-light mb-8 tracking-wide">STEEPLE LOFTS</h3>
-              <p className="text-sm text-gray-400 max-w-xs">
-                3600 Market Street<br />
-                Philadelphia, PA 19104
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-16 gap-y-8">
-              <div>
-                <h4 className="text-sm font-medium mb-4 tracking-wide text-[#C4A862]">NAVIGATION</h4>
-                <nav className="flex flex-col space-y-2 text-sm">
-                  <Link href="/residences" className="text-gray-400 hover:text-white transition-colors">Residences</Link>
-                  <Link href="/amenities" className="text-gray-400 hover:text-white transition-colors">Amenities</Link>
-                  <Link href="/neighborhood" className="text-gray-400 hover:text-white transition-colors">Neighborhood</Link>
-                  <Link href="/gallery" className="text-gray-400 hover:text-white transition-colors">Gallery</Link>
-                  <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link>
-                </nav>
-              </div>
-              
-              <div>
-                <h4 className="text-sm font-medium mb-4 tracking-wide text-[#C4A862]">CONTACT</h4>
-                <div className="flex flex-col space-y-2 text-sm">
-                  <p className="text-gray-400">info@steeplelofts.com</p>
-                  <p className="text-gray-400">(215) 555-1234</p>
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="text-sm font-medium mb-4 tracking-wide text-[#C4A862]">FOLLOW</h4>
-                <div className="flex space-x-4">
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">Instagram</a>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">Facebook</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="pt-8 border-t border-gray-800 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center">
-            <p>© {new Date().getFullYear()} Steeple Lofts at University City. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-gray-300 transition-colors">Terms of Service</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -52,12 +52,6 @@ export default function Navbar() {
                 AVAILABILITY
               </Link>
               <Link 
-                href="/amenities" 
-                className={`text-sm tracking-widest hover:text-[#C4A862] transition-colors ${pathname === '/amenities' ? 'text-[#C4A862]' : ''}`}
-              >
-                AMENITIES
-              </Link>
-              <Link 
                 href="/neighborhood" 
                 className={`text-sm tracking-widest hover:text-[#C4A862] transition-colors ${pathname === '/neighborhood' ? 'text-[#C4A862]' : ''}`}
               >
@@ -104,13 +98,6 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               RESIDENCES
-            </Link>
-            <Link 
-              href="/amenities" 
-              className="block text-2xl font-light tracking-wide hover:text-[#C4A862] transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              AMENITIES
             </Link>
             <Link 
               href="/neighborhood" 
