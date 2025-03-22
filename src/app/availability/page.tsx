@@ -61,8 +61,12 @@ export default function Availability() {
             });
           }
         };
-        
+        const metaTag = iframeDoc.createElement('meta');
+        metaTag.httpEquiv = 'Content-Security-Policy';
+        metaTag.content = "upgrade-insecure-requests";
+        iframeDoc.head.appendChild(metaTag);
         iframeDoc.head.appendChild(script);
+
       };
       
       // Set up iframe
