@@ -14,6 +14,7 @@ export default function Availability() {
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
           <title>Steeple Lofts Availability</title>
           <style>
             body {
@@ -96,7 +97,7 @@ export default function Availability() {
               className="w-full border-none"
               style={{ height: '800px', minHeight: '800px' }}
               title="Appfolio Listings"
-              sandbox="allow-scripts allow-forms"
+              sandbox="allow-scripts allow-forms allow-same-origin"
               srcDoc={iframeContent}
               loading="lazy"
               aria-label="Property listings"
