@@ -1,95 +1,62 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Availability() {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  // Initialize Appfolio within an iframe
+  const [iframeContent, setIframeContent] = useState<string>("");
+  
   useEffect(() => {
-    if (iframeRef.current) {
-      const iframe = iframeRef.current;
-      
-      // Handle iframe load event
-      const handleIframeLoad = () => {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-        
-        if (!iframeDoc) return;
-        
-        // Add base styles to iframe document
-        const style = iframeDoc.createElement('style');
-        style.textContent = `
-          body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            height: 100%;
-            overflow-x: hidden;
-          }
-          #appfolio-listing {
-            width: 100%;
-            height: 100%;
-            min-height: 800px;
-            overflow: auto;
-          }
-        `;
-        
-        // Create a container for Appfolio inside iframe
-        const appfolioContainer = iframeDoc.createElement('div');
-        appfolioContainer.id = 'appfolio-listing';
-        iframeDoc.body.appendChild(appfolioContainer);
-        
-        // Add style to iframe document
-        iframeDoc.head.appendChild(style);
-        
-        // Load the Appfolio script in the iframe
-        const script = iframeDoc.createElement('script');
-        script.src = "https://madisonparke.appfolio.com/javascripts/listing.js";
-        script.onload = () => {
-          if (iframeDoc.defaultView && iframeDoc.defaultView.Appfolio) {
-            iframeDoc.defaultView.Appfolio.Listing({
-              hostUrl: "https://madisonparke.appfolio.com",
-              propertyGroup: "Steeple",
-              themeColor: "#C4A862",
-              height: "100%", 
-              width: "100%",
-              defaultOrder: "rent_asc",
-              listingView: "tile",
-              listingCount: 12,
-              columns: 3
+    // Create the HTML content for the iframe
+    const content = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Steeple Lofts Availability</title>
+          <style>
+            body {
+              margin: 0;
+              padding: 0;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+              height: 100%;
+              overflow-x: hidden;
+            }
+            #appfolio-listing {
+              width: 100%;
+              height: 100%;
+              min-height: 800px;
+              overflow: auto;
+            }
+          </style>
+        </head>
+        <body>
+          <div id="appfolio-listing"></div>
+          
+          <script src="https://madisonparke.appfolio.com/javascripts/listing.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              if (window.Appfolio) {
+                window.Appfolio.Listing({
+                  hostUrl: "madisonparke.appfolio.com",
+                  propertyGroup: "Steeple",
+                  themeColor: "#C4A862",
+                  height: "100%",
+                  width: "100%",
+                  defaultOrder: "rent_asc",
+                  listingView: "tile",
+                  listingCount: 12,
+                  columns: 3
+                });
+              }
             });
-          }
-        };
-        iframeDoc.head.appendChild(script);
-      };
-      
-      // Set up iframe
-      iframe.onload = handleIframeLoad;
-      
-      // If iframe is already loaded, initialize
-      if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-        handleIframeLoad();
-      }
-    }
-  }, []);
-
-  // Resize iframe height based on content
-  useEffect(() => {
-    const handleResize = () => {
-      if (iframeRef.current) {
-        // Ensure minimum height but allow it to grow
-        iframeRef.current.style.height = '800px';
-      }
-    };
+          </script>
+        </body>
+      </html>
+    `;
     
-    window.addEventListener('resize', handleResize);
-    // Initial resize
-    handleResize();
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    setIframeContent(content);
   }, []);
 
   return (
@@ -123,14 +90,14 @@ export default function Availability() {
             </p>
           </div>
 
-          {/* Appfolio Container - embedded in iframe */}
+          {/* Appfolio Container - embedded in iframe with srcdoc */}
           <div className="mb-12 border border-gray-100 rounded-lg overflow-hidden">
             <iframe
-              ref={iframeRef}
               className="w-full border-none"
               style={{ height: '800px', minHeight: '800px' }}
               title="Appfolio Listings"
               sandbox="allow-scripts allow-forms"
+              srcDoc={iframeContent}
               loading="lazy"
               aria-label="Property listings"
             />
