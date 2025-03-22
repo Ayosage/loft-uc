@@ -61,12 +61,7 @@ export default function Availability() {
             });
           }
         };
-        const metaTag = iframeDoc.createElement('meta');
-        metaTag.httpEquiv = 'Content-Security-Policy';
-        metaTag.content = "upgrade-insecure-requests";
-        iframeDoc.head.appendChild(metaTag);
         iframeDoc.head.appendChild(script);
-
       };
       
       // Set up iframe
@@ -135,7 +130,7 @@ export default function Availability() {
               className="w-full border-none"
               style={{ height: '800px', minHeight: '800px' }}
               title="Appfolio Listings"
-              sandbox="allow-same-origin allow-scripts allow-forms"
+              sandbox="allow-scripts allow-forms"
               loading="lazy"
               aria-label="Property listings"
             />
