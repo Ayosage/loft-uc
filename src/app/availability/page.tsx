@@ -49,7 +49,7 @@ export default function Availability() {
         script.onload = () => {
           if (iframeDoc.defaultView && iframeDoc.defaultView.Appfolio) {
             iframeDoc.defaultView.Appfolio.Listing({
-              hostUrl: "madisonparke.appfolio.com",
+              hostUrl: "https://madisonparke.appfolio.com",
               propertyGroup: "Steeple",
               themeColor: "#C4A862",
               height: "100%", 
