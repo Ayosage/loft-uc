@@ -31,7 +31,7 @@ export default function Home() {
           <p className="text-xl md:text-2xl font-light mb-12 tracking-wider">
             LUXURY RESIDENCES AT UNIVERSITY CITY
           </p>
-          <Link href="/residences" 
+          <Link href="/availability" 
             className="border border-white px-10 py-3 text-sm tracking-widest hover:bg-white hover:text-black transition-all duration-300">
             EXPLORE RESIDENCES
           </Link>
@@ -102,13 +102,13 @@ export default function Home() {
         
         <div className="relative z-20 max-w-4xl mx-auto text-center text-white px-4">
           <div className="w-20 h-0.5 bg-[#C4A862] mx-auto mb-8"></div>
-          <h2 className="text-5xl md:text-6xl font-light mb-8 tracking-tight">EXTRAORDINARY AMENITIES</h2>
+          <h2 className="text-5xl md:text-6xl font-light mb-8 tracking-tight">EXTRAORDINARY LOCATION</h2>
           <p className="text-xl font-light mb-12 tracking-wider max-w-2xl mx-auto">
             Experience a curated collection of spaces designed for wellness, connection, and productivity.
           </p>
-          <Link href="/amenities" 
+          <Link href="/neighborhood" 
             className="border border-white px-10 py-3 text-sm tracking-widest hover:bg-white hover:text-black transition-all duration-300">
-            EXPLORE AMENITIES
+            EXPLORE THE NEIGHBORHOOD
           </Link>
         </div>
       </div>

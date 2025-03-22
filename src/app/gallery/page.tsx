@@ -46,7 +46,7 @@ export default function Gallery() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <div className="w-20 h-0.5 bg-[#C4A862] mb-12"></div>
-            <h1 className="text-4xl md:text-6xl font-light mb-12 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-light text-gray-800 mb-12 tracking-tight">
               GALLERY
             </h1>
             <p className="text-lg text-gray-700 leading-relaxed mb-8">

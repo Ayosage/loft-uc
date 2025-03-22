@@ -14,7 +14,7 @@ export default function Neighborhood() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <div className="w-20 h-0.5 bg-[#C4A862] mb-12"></div>
-            <h1 className="text-4xl md:text-6xl font-light mb-12 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-light text-gray-800 mb-12 tracking-tight">
               THE NEIGHBORHOOD
             </h1>
             <p className="text-lg text-gray-700 leading-relaxed mb-8">
@@ -44,7 +44,7 @@ export default function Neighborhood() {
             {/* Right Column - Content */}
             <div className="md:w-1/2">
               <div className="w-20 h-0.5 bg-[#C4A862] mb-6"></div>
-              <h2 className="text-3xl font-light mb-6 tracking-wide">UNIVERSITY CITY SPOTLIGHT</h2>
+              <h2 className="text-3xl font-light text-gray-800 mb-6 tracking-wide">UNIVERSITY CITY SPOTLIGHT</h2>
               
               <p className="text-gray-700 mb-8 leading-relaxed">
                 University City is a dynamic, diverse neighborhood in West Philadelphia, home to top universities 
@@ -95,7 +95,7 @@ export default function Neighborhood() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <div className="w-20 h-0.5 bg-[#C4A862] mb-6 mx-auto"></div>
-            <h2 className="text-3xl font-light mb-6 tracking-wide">EXPLORE THE AREA</h2>
+            <h2 className="text-3xl font-light text-gray-800 mb-6 tracking-wide">EXPLORE THE AREA</h2>
             <p className="text-gray-700 max-w-3xl mx-auto">
               Discover all that University City has to offer, from world-class dining and shopping 
               to cultural attractions and outdoor activities.
@@ -141,7 +141,7 @@ export default function Neighborhood() {
             {activeTab === 'overview' && (
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-2xl font-light mb-4 tracking-wide">University City</h3>
+                  <h3 className="text-2xl font-light text-gray-800 mb-4 tracking-wide">University City</h3>
                   <p className="text-gray-700 mb-4 leading-relaxed">
                     University City is at the heart of Philadelphia&apos;s intellectual and innovative ecosystem. 
                     Home to world-renowned educational institutions and research centers, this vibrant 
@@ -167,7 +167,7 @@ export default function Neighborhood() {
             
             {activeTab === 'dining' && (
               <div className="text-center">
-                <h3 className="text-2xl font-light mb-4 tracking-wide">Local Dining Options</h3>
+                <h3 className="text-2xl font-light text-gray-800 mb-4 tracking-wide">Local Dining Options</h3>
                 <p className="text-gray-700 mb-8 max-w-3xl mx-auto">
                   University City is home to a diverse culinary scene, offering everything from casual cafes 
                   to upscale dining experiences.
@@ -178,7 +178,7 @@ export default function Neighborhood() {
             
             {activeTab === 'shopping' && (
               <div className="text-center">
-                <h3 className="text-2xl font-light mb-4 tracking-wide">Shopping Destinations</h3>
+                <h3 className="text-2xl font-light text-gray-800 mb-4 tracking-wide">Shopping Destinations</h3>
                 <p className="text-gray-700 mb-8 max-w-3xl mx-auto">
                   Discover the many retail options in University City, from boutique shops to 
                   convenient everyday necessities.
@@ -189,7 +189,7 @@ export default function Neighborhood() {
             
             {activeTab === 'culture' && (
               <div className="text-center">
-                <h3 className="text-2xl font-light mb-4 tracking-wide">Cultural Attractions</h3>
+                <h3 className="text-2xl font-light text-gray-800 mb-4 tracking-wide">Cultural Attractions</h3>
                 <p className="text-gray-700 mb-8 max-w-3xl mx-auto">
                   University City boasts numerous museums, galleries, and performance venues 
                   that showcase the rich cultural heritage of Philadelphia.
@@ -200,7 +200,7 @@ export default function Neighborhood() {
             
             {activeTab === 'outdoors' && (
               <div className="text-center">
-                <h3 className="text-2xl font-light mb-4 tracking-wide">Parks & Recreation</h3>
+                <h3 className="text-2xl font-light text-gray-800 mb-4 tracking-wide">Parks & Recreation</h3>
                 <p className="text-gray-700 mb-8 max-w-3xl mx-auto">
                   Enjoy the beautiful outdoor spaces in and around University City, 
                   from scenic parks to recreational activities.
@@ -216,7 +216,7 @@ export default function Neighborhood() {
       <div className="py-24 px-4 bg-white z-40">
         <div className="max-w-3xl mx-auto text-center">
           <div className="w-20 h-0.5 bg-[#C4A862] mb-8 mx-auto"></div>
-          <h2 className="text-3xl font-light mb-8 tracking-wide">
+          <h2 className="text-3xl font-light text-gray-800 mb-8 tracking-wide">
             EXPERIENCE UNIVERSITY CITY
           </h2>
           <p className="text-gray-700 mb-12 leading-relaxed">
@@ -225,7 +225,7 @@ export default function Neighborhood() {
           </p>
           <Link
             href="/contact"
-            className="border border-black px-10 py-4 text-sm tracking-widest hover:bg-black hover:text-white transition-all duration-300"
+            className="border border-black px-10 py-4 text-gray-800 text-sm tracking-widest hover:bg-black hover:text-white transition-all duration-300"
           >
             SCHEDULE A TOUR
           </Link>
