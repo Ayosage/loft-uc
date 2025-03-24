@@ -7,49 +7,99 @@ export default function Availability() {
   const [iframeContent, setIframeContent] = useState<string>("");
   
   useEffect(() => {
-    // Create the HTML content for the iframe
+    // Create the HTML content for the iframe with more robust height handling
     const content = `
       <!DOCTYPE html>
-      <html>
+      <html style="height: 100%; min-height: 100%;">
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
           <title>Steeple Lofts Availability</title>
           <style>
-            body {
+            /* Reset all height-related properties for consistent cross-browser behavior */
+            html, body {
               margin: 0;
               padding: 0;
+              height: 100% !important;
+              min-height: 100% !important;
+              width: 100%;
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-              height: 100%;
               overflow-x: hidden;
             }
+            
+            body {
+              position: relative;
+              display: flex;
+              flex-direction: column;
+            }
+            
+            /* Position the appfolio container to fill all available space */
+            #appfolio-listing-wrapper {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              width: 100%;
+              height: 100%;
+              min-height: 800px;
+            }
+            
             #appfolio-listing {
               width: 100%;
               height: 100%;
               min-height: 800px;
-              overflow: auto;
+            }
+            
+            /* Chrome-specific fixes */
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+              body {
+                height: auto !important;
+                min-height: 100% !important;
+              }
+              
+              #appfolio-listing-wrapper {
+                height: auto !important;
+                min-height: 800px !important;
+              }
+              
+              #appfolio-listing {
+                height: auto !important;
+                min-height: 800px !important;
+              }
             }
           </style>
         </head>
         <body>
-          <div id="appfolio-listing"></div>
+          <div id="appfolio-listing-wrapper">
+            <div id="appfolio-listing"></div>
+          </div>
           
           <script src="https://madisonparke.appfolio.com/javascripts/listing.js"></script>
           <script>
             document.addEventListener('DOMContentLoaded', function() {
               if (window.Appfolio) {
+                // Initialize Appfolio with specific sizing
                 window.Appfolio.Listing({
                   hostUrl: "madisonparke.appfolio.com",
                   propertyGroup: "Steeple",
                   themeColor: "#C4A862",
-                  height: "100%",
+                  height: "800px", // Use explicit height instead of percentage
                   width: "100%",
                   defaultOrder: "rent_asc",
                   listingView: "tile",
                   listingCount: 12,
                   columns: 3
                 });
+                
+                // Force resize after a delay to ensure content takes up space
+                setTimeout(function() {
+                  if (document.getElementById('appfolio-listing').children[0]) {
+                    document.getElementById('appfolio-listing').children[0].style.height = '800px';
+                    document.getElementById('appfolio-listing').children[0].style.minHeight = '800px';
+                  }
+                }, 1000);
               }
             });
           </script>
@@ -90,11 +140,19 @@ export default function Availability() {
           </p>
         </div>
 
-        {/* Appfolio Container - Full width */}
-        <div className="w-full h-full mb-12 border-y border-gray-100 overflow-hidden">
+        {/* Appfolio Container - Full width with improved height handling */}
+        <div 
+          className="w-full mb-12 border-y border-gray-100 overflow-hidden" 
+          style={{ height: '800px', minHeight: '800px' }}
+        >
           <iframe
             className="w-full border-none"
-            style={{ height: '800px', minHeight: '800px' }}
+            style={{ 
+              height: '800px', 
+              minHeight: '800px',
+              display: 'block',
+              overflow: 'hidden'
+            }}
             title="Appfolio Listings"
             sandbox="allow-scripts allow-forms allow-same-origin"
             srcDoc={iframeContent}
