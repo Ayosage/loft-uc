@@ -42,7 +42,7 @@ export default function Gallery() {
   return (
     <div className="pt-28 min-h-screen">
       {/* Hero Section */}
-      <div className="relative z-40 py-24 px-4 bg-white border-b border-gray-100">
+      <div className="relative py-24 px-4 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <div className="w-20 h-0.5 bg-[#C4A862] mb-12"></div>

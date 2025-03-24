@@ -63,7 +63,7 @@ export default function Availability() {
   return (
     <div className="pt-28 min-h-screen">
       {/* Hero Section */}
-      <div className="relative z-40 py-24 px-4 bg-white border-b border-gray-100">
+      <div className="relative py-24 px-4 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <div className="w-20 h-0.5 bg-[#C4A862] mb-12"></div>
@@ -78,43 +78,41 @@ export default function Availability() {
         </div>
       </div>
       
-      {/* Listings Section with Embedded Appfolio */}
-      <div className="relative pt-16 pb-12 px-4 bg-white z-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-10">
-            <h2 className="text-3xl font-light text-gray-800 mb-6 tracking-wide">
-              CURRENT AVAILABILITY
-            </h2>
-            <p className="text-gray-700 mb-8">
-              Explore our selection of meticulously designed residences
-              featuring premium finishes and thoughtful layouts.
-            </p>
-          </div>
+      {/* Listings Section with Embedded Appfolio - Full Width */}
+      <div className="relative pt-16 pb-12 bg-white z-20">
+        <div className="max-w-7xl mx-auto px-4 mb-10">
+          <h2 className="text-3xl font-light text-gray-800 mb-6 tracking-wide">
+            CURRENT AVAILABILITY
+          </h2>
+          <p className="text-gray-700 mb-8">
+            Explore our selection of meticulously designed residences
+            featuring premium finishes and thoughtful layouts.
+          </p>
+        </div>
 
-          {/* Appfolio Container - embedded in iframe with srcdoc */}
-          <div className="mb-12 border border-gray-100 rounded-lg overflow-hidden">
-            <iframe
-              className="w-full border-none"
-              style={{ height: '800px', minHeight: '800px' }}
-              title="Appfolio Listings"
-              sandbox="allow-scripts allow-forms allow-same-origin"
-              srcDoc={iframeContent}
-              loading="lazy"
-              aria-label="Property listings"
-            />
-          </div>
+        {/* Appfolio Container - Full width */}
+        <div className="w-full mb-12 border-y border-gray-100 overflow-hidden">
+          <iframe
+            className="w-full border-none"
+            style={{ height: '800px', minHeight: '800px' }}
+            title="Appfolio Listings"
+            sandbox="allow-scripts allow-forms allow-same-origin"
+            srcDoc={iframeContent}
+            loading="lazy"
+            aria-label="Property listings"
+          />
+        </div>
 
-          {/* Show all listings button */}
-          <div className="text-center mt-12">
-            <Link
-              href="https://madisonparke.appfolio.com/listings"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-black px-10 py-3 text-sm tracking-widest hover:bg-black text-gray-800 hover:text-white transition-all duration-300"
-            >
-              VIEW ALL LISTINGS
-            </Link>
-          </div>
+        {/* Show all listings button */}
+        <div className="max-w-7xl mx-auto px-4 text-center mt-12">
+          <Link
+            href="https://madisonparke.appfolio.com/listings"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-black px-10 py-3 text-sm tracking-widest hover:bg-black text-gray-800 hover:text-white transition-all duration-300"
+          >
+            VIEW ALL LISTINGS
+          </Link>
         </div>
       </div>
       

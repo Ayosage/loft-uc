@@ -9,13 +9,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Logo */}
         <div className="flex justify-center mb-12">
-          <Image 
-            src="/Asset 2(1).svg" 
-            alt="Steeple Lofts Logo" 
-            width={180} 
-            height={60}
-            className="h-auto"
-          />
+          <a href="https://www.madisonparke.com/" target="_blank" rel="noopener noreferrer">
+            <Image 
+              src="/Asset 2(1).svg" 
+              alt="Steeple Lofts Logo" 
+              width={180} 
+              height={60}
+              className="h-auto"
+            />
+          </a>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">

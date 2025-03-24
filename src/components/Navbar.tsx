@@ -93,11 +93,11 @@ export default function Navbar() {
         <div className="fixed inset-0 bg-white z-40 flex flex-col justify-center items-center text-black pt-20">
           <div className="space-y-8 text-center">
             <Link 
-              href="/residences" 
+              href="/availability" 
               className="block text-2xl font-light tracking-wide hover:text-[#C4A862] transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              RESIDENCES
+              AVAILABILITY
             </Link>
             <Link 
               href="/neighborhood" 
