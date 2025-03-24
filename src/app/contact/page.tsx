@@ -216,7 +216,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
+                      className="w-full text-black px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
                     />
                   </div>
                   
@@ -232,7 +232,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
+                        className="w-full text-black px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
                       />
                     </div>
                     
@@ -246,7 +246,7 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
+                        className="w-full text-black px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
                       />
                     </div>
                   </div>
@@ -261,7 +261,7 @@ export default function Contact() {
                       name="moveInDate"
                       value={formData.moveInDate}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
+                      className="w-full text-black px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
                     />
                   </div>
                   
@@ -276,7 +276,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
+                      className="w-full text-black px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#C4A862] focus:border-[#C4A862]"
                     ></textarea>
                   </div>
                   
