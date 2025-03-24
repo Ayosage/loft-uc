@@ -91,14 +91,7 @@ export default function Home() {
       
 
       <div className="h-screen relative flex items-center justify-center bg-black">
-        {/* This would be a full-width background image */}
-        <Image 
-          src="/images/your-image.jpg"
-          alt=""
-          layout="fill"
-          objectFit="cover"
-          className="absolute inset-0"
-        />
+    
         
         <div className="relative z-20 max-w-4xl mx-auto text-center text-white px-4">
           <div className="w-20 h-0.5 bg-[#C4A862] mx-auto mb-8"></div>
@@ -114,10 +107,10 @@ export default function Home() {
       </div>
       
       {/* Neighborhood Preview - light section with image */}
-      <div className="py-24 px-4 bg-white">
+      <div className="py-24  px-4 bg-white">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-            <div className="bg-gray-200 w-full h-96 relative">
+            <div className="bg-gray-200 w-full lg:h-96 md:h-60 relative">
               <Image 
                src="/images/DJI_0054.JPG"
                alt="Description" 
