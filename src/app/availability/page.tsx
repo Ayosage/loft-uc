@@ -91,7 +91,7 @@ export default function Availability() {
         </div>
 
         {/* Appfolio Container - Full width */}
-        <div className="w-full mb-12 border-y border-gray-100 overflow-hidden">
+        <div className="w-full h-full mb-12 border-y border-gray-100 overflow-hidden">
           <iframe
             className="w-full border-none"
             style={{ height: '800px', minHeight: '800px' }}
