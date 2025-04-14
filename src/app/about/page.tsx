@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function About() {
   return (
     <div className="pt-24 min-h-screen">
-      {/* Hero Section - following Carlton Park's minimal aesthetic */}
+
       <div className="py-24 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
@@ -25,7 +25,7 @@ export default function About() {
         {/* This would be a full-width image */}
       </div>
       
-      {/* Mission Section - clean layout following Carlton Park's approach */}
+     
       <div className="py-24 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row gap-20">
@@ -45,7 +45,7 @@ export default function About() {
         </div>
       </div>
       
-      {/* Values Section - grid layout inspired by Carlton Park */}
+    
       <div className="py-24 px-4 bg-[#F8F8F8]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -133,7 +133,7 @@ export default function About() {
         </div>
       </div>
       
-      {/* CTA Section - aligned with Carlton Park's minimal approach */}
+    
       <div className="py-24 px-4 bg-[#F8F8F8]">
         <div className="max-w-3xl mx-auto text-center">
           <div className="w-20 h-0.5 bg-[#C4A862] mb-8 mx-auto"></div>

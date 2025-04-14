@@ -71,7 +71,7 @@ export default function Navbar() {
               </Link>
             </div>
             
-            {/* Mobile menu button - similar to Carlton Park's clean look */}
+           
             <div className="md:hidden">
               <button 
                 type="button" 
@@ -88,7 +88,7 @@ export default function Navbar() {
         </div>
       </nav>
       
-      {/* Mobile menu - fullscreen overlay like Carlton Park */}
+   
       {mobileMenuOpen && (
         <div className="fixed inset-0 bg-white z-40 flex flex-col justify-center items-center text-black pt-20">
           <div className="space-y-8 text-center">

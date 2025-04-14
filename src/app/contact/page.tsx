@@ -168,7 +168,7 @@ export default function Contact() {
               
               <div className="mt-8 text-gray-700">
                 <p className="mb-4">
-                  <strong>Property Management:</strong> Madison Park
+                  <strong>Property Management:</strong> Madison Parke
                 </p>
                 <p className="mb-4">
                   <strong>Management Address:</strong><br />
@@ -182,7 +182,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="text-[#C4A862] hover:underline"
                   >
-                    Visit Madison Park Website
+                    Visit Madison Parke Website
                   </a>
                 </p>
               </div>

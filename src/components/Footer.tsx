@@ -39,7 +39,7 @@ export default function Footer() {
               </a>
             </p>
             <p className="text-sm text-gray-400">
-              Managed by <a href="https://www.madisonparke.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#C4A862] transition-colors">Madison Park</a><br />
+              Managed by <a href="https://www.madisonparke.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#C4A862] transition-colors">Madison Parke</a><br />
               107 S 2nd St #300, Philadelphia, PA 19106
             </p>
           </div>
