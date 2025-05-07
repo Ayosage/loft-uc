@@ -29,8 +29,8 @@ export default function Navbar() {
       <nav 
         className={`fixed w-full z-50 transition-all duration-500 ${
           isScrolled || mobileMenuOpen 
-            ? "bg-white text-black py-4" 
-            : "bg-transparent text-white py-6"
+            ? "bg-white text-black shadow-sm py-4" 
+            : "bg-[#0a0a0a] bg-opacity-20 text-white py-6"
         }`}
         style={{ pointerEvents: "auto" }} // Ensure nav is clickable
       >
