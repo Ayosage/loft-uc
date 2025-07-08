@@ -124,8 +124,8 @@ export default function Navbar() {
           
           <div className="mt-16 px-6 text-center">
             <p className="text-sm text-gray-600 mb-3">GET IN TOUCH</p>
-            <p className="text-lg">info@steeplelofts.com</p>
-            <p className="text-lg">(215) 555-1234</p>
+            <p className="text-lg">leasing@madisonparke.com</p>
+            <p className="text-lg">(215)-613-4190</p>
           </div>
         </div>
       )}

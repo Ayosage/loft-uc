@@ -30,12 +30,12 @@ export default function Footer() {
             </p>
             <p className="mb-1 text-sm">
               <span className="text-[#C4A862] mr-2">Phone:</span>
-              <a href="tel:2673576829" className="hover:text-[#C4A862] transition-colors">267-357-6829</a>
+              <a href="tel:2156134190" className="hover:text-[#C4A862] transition-colors">215-613-4190</a>
             </p>
             <p className="mb-6 text-sm">
               <span className="text-[#C4A862] mr-2">Email:</span>
-              <a href="mailto:leasingsupport@madisonparke.com" className="hover:text-[#C4A862] transition-colors">
-                leasingsupport@madisonparke.com
+              <a href="mailto:leasing@madisonparke.com" className="hover:text-[#C4A862] transition-colors">
+                leasing@madisonparke.com
               </a>
             </p>
             <p className="text-sm text-gray-400">

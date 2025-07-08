@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'Steeple Lofts <noreply@steepleapartments.com>', // Update with your domain
-      to: ['leasingsupport@madisonparke.com'], // Primary recipient
+      to: ['leasing@madisonparke.com'], // Primary recipient
       cc: [email], // Send a copy to the sender
       subject: 'New Inquiry from Steeple Lofts',
       html: emailContent,

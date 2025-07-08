@@ -121,7 +121,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold mb-1">Phone</p>
-                      <p><a href="tel:2673576829" className="hover:text-[#C4A862]">267-357-6829</a></p>
+                      <p><a href="tel:2156134190" className="hover:text-[#C4A862]">215-613-4190</a></p>
                     </div>
                   </div>
                   
@@ -134,7 +134,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold mb-1">Email</p>
-                      <p><a href="mailto:leasingsupport@madisonparke.com" className="hover:text-[#C4A862]">leasingsupport@madisonparke.com</a></p>
+                      <p><a href="mailto:leasing@madisonparke.com" className="hover:text-[#C4A862]">leasing@madisonparke.com</a></p>
                     </div>
                   </div>
                   
