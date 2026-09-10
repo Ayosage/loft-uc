@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 export default function Contact() {
@@ -10,7 +10,16 @@ export default function Contact() {
     phone: '',
     message: '',
     moveInDate: '',
+    website: '', // Honeypot: hidden from users, bots often fill it
   });
+
+  // Render time, sent with the form; the API rejects submissions faster than a
+  // person can type (bots post instantly). Set after mount to avoid a
+  // hydration mismatch.
+  const openedAt = useRef(0);
+  useEffect(() => {
+    openedAt.current = Date.now();
+  }, []);
 
   const [formStatus, setFormStatus] = useState<{
     status: 'idle' | 'submitting' | 'success' | 'error';
@@ -41,7 +50,7 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, t: openedAt.current }),
       });
 
       const data = await response.json();
@@ -58,6 +67,7 @@ export default function Contact() {
           phone: '',
           message: '',
           moveInDate: '',
+          website: '',
         });
       } else {
         throw new Error(data.error || 'Failed to send message');
@@ -99,7 +109,7 @@ export default function Contact() {
                 <h2 className="text-3xl font-light text-gray-800 mb-8 tracking-wide">GET IN TOUCH</h2>
                 <div className="space-y-6 text-gray-700">
                   <div className="flex items-start">
-                    <div className="text-[#C4A862] mr-4">
+                    <div className="text-[#8A6F2E] mr-4">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                       </svg>
@@ -114,19 +124,19 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="text-[#C4A862] mr-4">
+                    <div className="text-[#8A6F2E] mr-4">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                       </svg>
                     </div>
                     <div>
                       <p className="font-semibold mb-1">Phone</p>
-                      <p><a href="tel:2156134190" className="hover:text-[#C4A862]">215-613-4190</a></p>
+                      <p><a href="tel:2156134190" className="hover:text-[#8A6F2E]">215-613-4190</a></p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="text-[#C4A862] mr-4">
+                    <div className="text-[#8A6F2E] mr-4">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -134,12 +144,12 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold mb-1">Email</p>
-                      <p><a href="mailto:leasing@madisonparke.com" className="hover:text-[#C4A862]">leasing@madisonparke.com</a></p>
+                      <p><a href="mailto:leasing@madisonparke.com" className="hover:text-[#8A6F2E]">leasing@madisonparke.com</a></p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="text-[#C4A862] mr-4">
+                    <div className="text-[#8A6F2E] mr-4">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                       </svg>
@@ -180,7 +190,7 @@ export default function Contact() {
                     href="https://www.madisonparke.com/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-[#C4A862] hover:underline"
+                    className="text-[#8A6F2E] hover:underline"
                   >
                     Visit Madison Parke Website
                   </a>
@@ -204,7 +214,23 @@ export default function Contact() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 relative">
+                  {/* Honeypot: hidden from users; bots that fill it are rejected silently */}
+                  <div
+                    className="absolute -left-[9999px] w-px h-px overflow-hidden opacity-0"
+                    aria-hidden="true"
+                  >
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div>
                     <label htmlFor="name" className="block text-gray-700 mb-1">
                       Name*

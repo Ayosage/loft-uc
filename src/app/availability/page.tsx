@@ -1,14 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function Availability() {
-  const [iframeContent, setIframeContent] = useState<string>("");
-  
-  useEffect(() => {
-    // Create the HTML content for the iframe with more robust height handling
-    const content = `
+// The AppFolio listing widget runs inside a same-origin iframe so its script
+// and styles stay isolated from the page. The document is static.
+const IFRAME_CONTENT = `
       <!DOCTYPE html>
       <html style="height: 100%; min-height: 100%;">
         <head>
@@ -95,9 +91,11 @@ export default function Availability() {
                 
                 // Force resize after a delay to ensure content takes up space
                 setTimeout(function() {
-                  if (document.getElementById('appfolio-listing').children[0]) {
-                    document.getElementById('appfolio-listing').children[0].style.height = '800px';
-                    document.getElementById('appfolio-listing').children[0].style.minHeight = '800px';
+                  var listing = document.getElementById('appfolio-listing');
+                  var widget = listing && listing.children[0];
+                  if (widget) {
+                    widget.style.height = '800px';
+                    widget.style.minHeight = '800px';
                   }
                 }, 1000);
               }
@@ -106,9 +104,8 @@ export default function Availability() {
         </body>
       </html>
     `;
-    
-    setIframeContent(content);
-  }, []);
+
+export default function Availability() {
 
   return (
     <div className="pt-28 min-h-screen">
@@ -155,7 +152,7 @@ export default function Availability() {
             }}
             title="Appfolio Listings"
             sandbox="allow-scripts allow-forms allow-same-origin"
-            srcDoc={iframeContent}
+            srcDoc={IFRAME_CONTENT}
             loading="lazy"
             aria-label="Property listings"
           />

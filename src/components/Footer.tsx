@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Contact Information */}
           <div>
-            <h3 className="text-[#C4A862] text-lg font-light tracking-wide mb-6">STEEPLE LOFTS</h3>
+            <h2 className="text-[#C4A862] text-lg font-light tracking-wide mb-6">STEEPLE LOFTS</h2>
             <p className="mb-4 text-sm leading-relaxed">
               3801 Spring Garden St<br />
               Philadelphia, PA 19104
@@ -46,7 +46,7 @@ export default function Footer() {
           
           {/* Navigation Links */}
           <div>
-            <h3 className="text-[#C4A862] text-lg font-light tracking-wide mb-6">EXPLORE</h3>
+            <h2 className="text-[#C4A862] text-lg font-light tracking-wide mb-6">EXPLORE</h2>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/" className="hover:text-[#C4A862] transition-colors">
@@ -78,7 +78,7 @@ export default function Footer() {
           
           {/* Call to Action */}
           <div>
-            <h3 className="text-[#C4A862] text-lg font-light tracking-wide mb-6">CONNECT WITH US</h3>
+            <h2 className="text-[#C4A862] text-lg font-light tracking-wide mb-6">CONNECT WITH US</h2>
             <p className="text-sm mb-6 leading-relaxed">
               Interested in making Steeple Lofts your home? Contact our team today to schedule a tour and learn more about our available residences.
             </p>
