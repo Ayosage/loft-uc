@@ -13,7 +13,7 @@ export default function Home() {
           muted
           loop
           playsInline
-          poster="/images/placeholder-hero.jpg" // Optional placeholder image while video loads
+          poster="/images/hero-poster.jpg"
         >
           <source src="/video/drone-video/drone-video-comp.mp4" type="video/mp4" />
         </video>
@@ -58,7 +58,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full ">
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center mb-6 border border-[#C4A862]">
-                <span className="text-[#C4A862]">01</span>
+                <span className="text-[#8A6F2E]">01</span>
               </div>
               <h3 className="text-xl font-light mb-4 tracking-wide">MODERN DESIGN</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -68,7 +68,7 @@ export default function Home() {
             
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center mb-6 border border-[#C4A862]">
-                <span className="text-[#C4A862]">02</span>
+                <span className="text-[#8A6F2E]">02</span>
               </div>
               <h3 className="text-xl font-light mb-4 tracking-wide">LUXURY AMENITIES</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -78,7 +78,7 @@ export default function Home() {
             
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center mb-6 border border-[#C4A862]">
-                <span className="text-[#C4A862]">03</span>
+                <span className="text-[#8A6F2E]">03</span>
               </div>
               <h3 className="text-xl font-light mb-4 tracking-wide">PRIME LOCATION</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -95,7 +95,7 @@ export default function Home() {
         
         <div className="relative z-20 max-w-4xl mx-auto text-center text-white px-4">
           <div className="w-20 h-0.5 bg-[#C4A862] mx-auto mb-8"></div>
-          <h2 className="text-5xl md:text-6xl font-light mb-8 tracking-tight">EXTRAORDINARY LOCATION</h2>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-light mb-8 tracking-tight">EXTRAORDINARY LOCATION</h2>
           <p className="text-xl font-light mb-12 tracking-wider max-w-2xl mx-auto">
             Experience a curated collection of spaces designed for wellness, connection, and productivity.
           </p>

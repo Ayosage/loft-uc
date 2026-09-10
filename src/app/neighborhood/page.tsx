@@ -58,28 +58,28 @@ export default function Neighborhood() {
               {/* Feature Cards */}
               <div className="mt-8 space-y-6">
                 <div className="p-6 bg-[#f8f8f8] rounded-lg">
-                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#C4A862]">Top-Tier Education & Research</h3>
+                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#8A6F2E]">Top-Tier Education & Research</h3>
                   <p className="text-gray-700">
                     Home to Ivy League powerhouse UPenn and research-driven Drexel University, fostering innovation in academics and technology.
                   </p>
                 </div>
                 
                 <div className="p-6 bg-[#f8f8f8] rounded-lg">
-                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#C4A862]">World-Class Medical & Life Sciences Hub</h3>
+                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#8A6F2E]">World-Class Medical & Life Sciences Hub</h3>
                   <p className="text-gray-700">
                     Features top institutions like CHOP and a booming biotech sector driving medical advancements.
                   </p>
                 </div>
                 
                 <div className="p-6 bg-[#f8f8f8] rounded-lg">
-                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#C4A862]">Major Transportation Nexus</h3>
+                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#8A6F2E]">Major Transportation Nexus</h3>
                   <p className="text-gray-700">
                     Anchored by 30th Street Station, with extensive rail, bus, bike, and pedestrian-friendly infrastructure.
                   </p>
                 </div>
                 
                 <div className="p-6 bg-[#f8f8f8] rounded-lg">
-                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#C4A862]">Thriving Cultural & Economic Growth</h3>
+                  <h3 className="text-xl font-light mb-2 tracking-wide text-[#8A6F2E]">Thriving Cultural & Economic Growth</h3>
                   <p className="text-gray-700">
                     A hotspot for arts, diverse dining, and major developments in real estate, tech, and hospitality.
                   </p>
@@ -106,31 +106,31 @@ export default function Neighborhood() {
           <div className="flex flex-wrap justify-center gap-2 mb-12 border-b border-gray-200">
             <button 
               onClick={() => setActiveTab('overview')}
-              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'overview' ? 'border-b-2 border-[#C4A862] text-[#C4A862]' : 'text-gray-600 hover:text-[#C4A862]'}`}
+              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'overview' ? 'border-b-2 border-[#C4A862] text-[#8A6F2E]' : 'text-gray-600 hover:text-[#8A6F2E]'}`}
             >
               OVERVIEW
             </button>
             <button 
               onClick={() => setActiveTab('dining')}
-              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'dining' ? 'border-b-2 border-[#C4A862] text-[#C4A862]' : 'text-gray-600 hover:text-[#C4A862]'}`}
+              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'dining' ? 'border-b-2 border-[#C4A862] text-[#8A6F2E]' : 'text-gray-600 hover:text-[#8A6F2E]'}`}
             >
               DINING
             </button>
             <button 
               onClick={() => setActiveTab('shopping')}
-              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'shopping' ? 'border-b-2 border-[#C4A862] text-[#C4A862]' : 'text-gray-600 hover:text-[#C4A862]'}`}
+              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'shopping' ? 'border-b-2 border-[#C4A862] text-[#8A6F2E]' : 'text-gray-600 hover:text-[#8A6F2E]'}`}
             >
               SHOPPING
             </button>
             <button 
               onClick={() => setActiveTab('culture')}
-              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'culture' ? 'border-b-2 border-[#C4A862] text-[#C4A862]' : 'text-gray-600 hover:text-[#C4A862]'}`}
+              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'culture' ? 'border-b-2 border-[#C4A862] text-[#8A6F2E]' : 'text-gray-600 hover:text-[#8A6F2E]'}`}
             >
               CULTURE
             </button>
             <button 
               onClick={() => setActiveTab('outdoors')}
-              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'outdoors' ? 'border-b-2 border-[#C4A862] text-[#C4A862]' : 'text-gray-600 hover:text-[#C4A862]'}`}
+              className={`px-6 py-4 text-sm tracking-widest transition-all ${activeTab === 'outdoors' ? 'border-b-2 border-[#C4A862] text-[#8A6F2E]' : 'text-gray-600 hover:text-[#8A6F2E]'}`}
             >
               OUTDOORS
             </button>

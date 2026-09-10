@@ -55,21 +55,21 @@ export default function About() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             <div>
-              <span className="text-[#C4A862] text-sm tracking-wider mb-4 block">01</span>
+              <span className="text-[#8A6F2E] text-sm tracking-wider mb-4 block">01</span>
               <h3 className="text-xl font-light mb-5 tracking-wide">EXCELLENCE</h3>
               <p className="text-gray-600 leading-relaxed">
                 We uphold the highest standards in every aspect of our work, consistently delivering quality that exceeds expectations.
               </p>
             </div>
             <div>
-              <span className="text-[#C4A862] text-sm tracking-wider mb-4 block">02</span>
+              <span className="text-[#8A6F2E] text-sm tracking-wider mb-4 block">02</span>
               <h3 className="text-xl font-light mb-5 tracking-wide">INTEGRITY</h3>
               <p className="text-gray-600 leading-relaxed">
                 We act with unwavering honesty and transparency, building trust through ethical practices and authentic relationships.
               </p>
             </div>
             <div>
-              <span className="text-[#C4A862] text-sm tracking-wider mb-4 block">03</span>
+              <span className="text-[#8A6F2E] text-sm tracking-wider mb-4 block">03</span>
               <h3 className="text-xl font-light mb-5 tracking-wide">INNOVATION</h3>
               <p className="text-gray-600 leading-relaxed">
                 We embrace creative thinking and pioneering approaches to solve complex business challenges with fresh perspectives.
@@ -93,7 +93,7 @@ export default function About() {
           <div className="space-y-20">
             <div className="flex flex-col md:flex-row items-start">
               <div className="md:w-1/4 mb-6 md:mb-0">
-                <span className="text-[#C4A862] text-3xl font-light">2010</span>
+                <span className="text-[#8A6F2E] text-3xl font-light">2010</span>
               </div>
               <div className="md:w-3/4 md:border-l md:border-gray-200 md:pl-12 relative">
                 <div className="hidden md:block absolute w-3 h-3 rounded-full bg-[#C4A862] top-2 -left-1.5"></div>
@@ -106,7 +106,7 @@ export default function About() {
             
             <div className="flex flex-col md:flex-row items-start">
               <div className="md:w-1/4 mb-6 md:mb-0">
-                <span className="text-[#C4A862] text-3xl font-light">2015</span>
+                <span className="text-[#8A6F2E] text-3xl font-light">2015</span>
               </div>
               <div className="md:w-3/4 md:border-l md:border-gray-200 md:pl-12 relative">
                 <div className="hidden md:block absolute w-3 h-3 rounded-full bg-[#C4A862] top-2 -left-1.5"></div>
@@ -119,7 +119,7 @@ export default function About() {
             
             <div className="flex flex-col md:flex-row items-start">
               <div className="md:w-1/4 mb-6 md:mb-0">
-                <span className="text-[#C4A862] text-3xl font-light">2020</span>
+                <span className="text-[#8A6F2E] text-3xl font-light">2020</span>
               </div>
               <div className="md:w-3/4 md:border-l md:border-gray-200 md:pl-12 relative">
                 <div className="hidden md:block absolute w-3 h-3 rounded-full bg-[#C4A862] top-2 -left-1.5"></div>
