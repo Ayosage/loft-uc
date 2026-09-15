@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about Steeple Lofts at University City, luxury apartments at 3801 Spring Garden Street in Philadelphia.",
+  alternates: { canonical: "/about" },
+};
 
 export default function About() {
   return (

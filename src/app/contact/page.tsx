@@ -13,10 +13,12 @@ export default function Contact() {
     website: '', // Honeypot: hidden from users, bots often fill it
   });
 
-  // Render time, sent with the form; the API rejects submissions faster than a
-  // person can type (bots post instantly). Set after mount to avoid a
-  // hydration mismatch.
-  const openedAt = useRef(0);
+  // Render time, set after mount to avoid a hydration mismatch. We send the API
+  // how long the form was open, never this raw value, so the whole measurement
+  // happens in one clock: a device whose clock is off by seconds or minutes
+  // still reports the correct duration. The API rejects submissions faster than
+  // a person can type (bots post instantly).
+  const openedAt = useRef<number | null>(null);
   useEffect(() => {
     openedAt.current = Date.now();
   }, []);
@@ -32,6 +34,11 @@ export default function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
+    // Backstop for the mount effect: a visitor always types before submitting,
+    // so the clock is running by then even if the effect somehow has not fired.
+    if (openedAt.current === null) {
+      openedAt.current = Date.now();
+    }
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -50,7 +57,10 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, t: openedAt.current }),
+        body: JSON.stringify({
+          ...formData,
+          elapsedMs: openedAt.current === null ? 0 : Date.now() - openedAt.current,
+        }),
       });
 
       const data = await response.json();

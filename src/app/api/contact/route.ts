@@ -33,6 +33,22 @@ function isRateLimited(id: string): boolean {
   return entry.count > RATE_MAX;
 }
 
+// --- Decoy rejections ---
+// The honeypot and the timing guard both answer 200 so a scraper cannot tell
+// it was caught. That silence also hides real submissions we drop by mistake,
+// so every decoy answer is logged: search Vercel Runtime Logs for
+// "Contact API: rejected" to see what the form swallowed.
+function logDecoyRejection(
+  reason: 'honeypot' | 'timing',
+  clientId: string,
+  detail: Record<string, unknown>
+): void {
+  console.warn(
+    `Contact API: rejected (${reason})`,
+    JSON.stringify({ clientId, ...detail })
+  );
+}
+
 // --- HTML escaping to prevent injection in email body ---
 function escapeHtml(s: string | null | undefined): string {
   if (s == null) return '';
@@ -95,7 +111,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Request too large' }, { status: 413 });
     }
 
-    if (isRateLimited(getClientId(request))) {
+    const clientId = getClientId(request);
+    if (isRateLimited(clientId)) {
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
         { status: 429 }
@@ -103,21 +120,34 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
+    const fields: Record<string, unknown> =
+      body && typeof body === 'object' && !Array.isArray(body)
+        ? (body as Record<string, unknown>)
+        : {};
 
     // Honeypot: if "website" is filled, treat as bot — return 200 so we don't tip them off
-    const hp = body && typeof body === 'object' && !Array.isArray(body)
-      ? (body as Record<string, unknown>).website
-      : undefined;
+    const hp = fields.website;
     if (typeof hp === 'string' && hp.trim().length > 0) {
+      logDecoyRejection('honeypot', clientId, { email: fields.email });
       return NextResponse.json({ success: true, message: 'Email sent successfully' }, { status: 200 });
     }
 
-    // Minimum time-to-submit: the form sends the time it was opened. Missing or
-    // under 2 s means a script, not a person; answer like the honeypot does.
-    const t = body && typeof body === 'object' && !Array.isArray(body)
-      ? (body as Record<string, unknown>).t
-      : undefined;
-    if (typeof t !== 'number' || !Number.isFinite(t) || Date.now() - t < MIN_SUBMIT_MS) {
+    // Minimum time-to-submit: the form sends how long it was open, measured
+    // entirely in the visitor's own clock. Comparing a browser timestamp
+    // against server time instead would drop real leads from any device whose
+    // clock runs fast, which is common on phones.
+    // `t` is the field this replaced; it carried an absolute browser timestamp,
+    // so a value from a still-cached old bundle reads here as a very long
+    // duration and passes. Drop that fallback once no old bundles are in
+    // flight. Missing or under 2 s means a script, not a person; answer like
+    // the honeypot does.
+    const elapsedMs = fields.elapsedMs ?? fields.t;
+    if (
+      typeof elapsedMs !== 'number' ||
+      !Number.isFinite(elapsedMs) ||
+      elapsedMs < MIN_SUBMIT_MS
+    ) {
+      logDecoyRejection('timing', clientId, { elapsedMs, email: fields.email });
       return NextResponse.json({ success: true, message: 'Email sent successfully' }, { status: 200 });
     }
 
