@@ -22,6 +22,7 @@ const realFetch = globalThis.fetch;
 const realWarn = console.warn;
 
 let sendAttempts = 0;
+let sent: Array<Record<string, unknown>> = [];
 let warnings: string[] = [];
 
 globalThis.fetch = async () =>
@@ -79,9 +80,15 @@ async function post(body: Record<string, unknown>) {
 
 beforeEach(() => {
   sendAttempts = 0;
+  sent = [];
   warnings = [];
-  globalThis.fetch = async () => {
+  globalThis.fetch = async (_url: unknown, init?: { body?: unknown }) => {
     sendAttempts += 1;
+    try {
+      sent.push(JSON.parse(String(init?.body ?? '{}')));
+    } catch {
+      sent.push({});
+    }
     return new Response(JSON.stringify({ id: 'test-email-id' }), {
       status: 200,
       headers: { 'content-type': 'application/json' },
@@ -110,7 +117,7 @@ describe('contact API timing guard', () => {
 
     assert.equal(status, 200);
     assert.equal(body.success, true);
-    assert.equal(sendAttempts, 1, 'the email must actually be sent');
+    assert.equal(sendAttempts, 2, 'the lead and the acknowledgement both go out');
     assert.deepEqual(warnings, []);
   });
 
@@ -121,7 +128,7 @@ describe('contact API timing guard', () => {
 
     assert.equal(status, 200);
     assert.equal(body.success, true);
-    assert.equal(sendAttempts, 1);
+    assert.equal(sendAttempts, 2);
   });
 
   it('accepts an honest submission that took longer than 2 s', async () => {
@@ -129,7 +136,7 @@ describe('contact API timing guard', () => {
 
     assert.equal(status, 200);
     assert.equal(body.success, true);
-    assert.equal(sendAttempts, 1);
+    assert.equal(sendAttempts, 2);
   });
 
   it('rejects a submission filled in under 2 s, without tipping off the sender', async () => {
@@ -181,7 +188,7 @@ describe('contact API timing guard', () => {
 
     assert.equal(status, 200);
     assert.equal(body.success, true);
-    assert.equal(sendAttempts, 1, 'the lead must not be silently dropped');
+    assert.equal(sendAttempts, 2, 'the lead must not be silently dropped');
   });
 
   it('still accepts the legacy absolute timestamp from a cached old bundle', async () => {
@@ -192,10 +199,37 @@ describe('contact API timing guard', () => {
 
     assert.equal(status, 200);
     assert.equal(body.success, true);
-    assert.equal(sendAttempts, 1);
+    assert.equal(sendAttempts, 2);
   });
 });
 
+describe('contact API send split', () => {
+  it('never puts caller text and a caller address in the same send', async () => {
+    // What the cc allowed: the enquiry mail carried the submitter's own text
+    // and was copied to an address they chose, so the route could deliver
+    // written-to-order mail from this building's domain. The lead and the
+    // acknowledgement are now separate sends with no overlap.
+    const { status } = await post(browserSubmission());
+    assert.equal(status, 200);
+    assert.equal(sent.length, 2);
+
+    const [lead, acknowledgement] = sent;
+
+    assert.deepEqual(lead.to, ['leasing@madisonparke.com']);
+    assert.equal(lead.cc, undefined, 'the lead may not be copied anywhere');
+    assert.ok(String(lead.html).includes(FORM.message), 'leasing still gets the message');
+
+    assert.deepEqual(acknowledgement.to, [FORM.email]);
+    assert.equal(
+      String(acknowledgement.html).includes(FORM.message),
+      false,
+      'the acknowledgement must not echo anything the caller typed'
+    );
+    for (const field of [FORM.name, FORM.phone, FORM.moveInDate]) {
+      assert.equal(String(acknowledgement.html).includes(field), false, `leaks ${field}`);
+    }
+  });
+});
 describe('contact API honeypot', () => {
   it('rejects a filled honeypot and logs it separately', async () => {
     const { status, body } = await post(
