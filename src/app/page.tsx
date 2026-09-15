@@ -126,7 +126,7 @@ export default function Home() {
               A vibrant neighborhood at the intersection of culture, education, and innovation, University City offers a dynamic urban experience.
             </p>
             <p className="text-gray-600 mb-12 leading-relaxed">
-              Discover world-class institutions, diverse dining options, lush parks, and a thriving arts scene—all steps from your front door.
+              Discover world-class institutions, diverse dining options, lush parks, and a thriving arts scene, all steps from your front door.
             </p>
             <Link href="/neighborhood" 
               className="border border-black px-10 py-3 text-sm tracking-widest hover:bg-black hover:text-white transition-all duration-300">
