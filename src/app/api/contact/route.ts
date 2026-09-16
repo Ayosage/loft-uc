@@ -66,6 +66,7 @@ function escapeHtml(s: string | null | undefined): string {
 const CONFIRMATION_HTML = `
       <h2>Thank you for contacting Steeple Lofts</h2>
       <p>We have received your inquiry and our leasing team will be in touch shortly.</p>
+      <p>To reach us sooner, call the leasing office at <a href="tel:2156134190">215-613-4190</a>.</p>
     `;
 
 // --- Validation ---
