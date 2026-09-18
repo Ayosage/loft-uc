@@ -172,27 +172,17 @@ describe('contact API timing guard', () => {
     });
   }
 
-  it('accepts a fast-clock submission sent in the old wire format', async () => {
-    // The exact production failure: a bundle that posts the browser's absolute
-    // timestamp, from a phone ten minutes ahead of real time. The old server
-    // computed Date.now() - t, got a negative number, and answered the decoy
-    // 200 without sending anything.
-    const { status, body } = await post({ ...FORM, t: Date.now() + 10 * MINUTE });
-
-    assert.equal(status, 200);
-    assert.equal(body.success, true);
-    assert.equal(sendAttempts, 1, 'the lead must not be silently dropped');
-  });
-
-  it('still accepts the legacy absolute timestamp from a cached old bundle', async () => {
-    // Visitors who loaded the page before this deploy post `t`, an absolute
-    // browser timestamp. It reads as a very long duration, so their lead goes
-    // through instead of being dropped during the rollout.
+  it('ignores the legacy `t` field, which would otherwise skip the guard', async () => {
+    // `t` carried an absolute browser timestamp (~1.76e12). Read as a duration
+    // it clears any floor, so honouring it let a caller pass the minimum
+    // time-to-submit check by sending one large number. The rollout window for
+    // cached pre-2026-09-14 bundles has passed, so `t` is no longer read and a
+    // submission carrying only `t` is treated as having no elapsed time.
     const { status, body } = await post({ ...FORM, t: Date.now() });
 
-    assert.equal(status, 200);
+    assert.equal(status, 200, 'still answers like the honeypot, to stay silent');
     assert.equal(body.success, true);
-    assert.equal(sendAttempts, 1);
+    assert.equal(sendAttempts, 0, 'nothing is sent for a submission with no elapsedMs');
   });
 });
 

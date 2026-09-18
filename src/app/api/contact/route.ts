@@ -136,12 +136,12 @@ export async function POST(request: NextRequest) {
     // entirely in the visitor's own clock. Comparing a browser timestamp
     // against server time instead would drop real leads from any device whose
     // clock runs fast, which is common on phones.
-    // `t` is the field this replaced; it carried an absolute browser timestamp,
-    // so a value from a still-cached old bundle reads here as a very long
-    // duration and passes. Drop that fallback once no old bundles are in
-    // flight. Missing or under 2 s means a script, not a person; answer like
-    // the honeypot does.
-    const elapsedMs = fields.elapsedMs ?? fields.t;
+    // Only `elapsedMs` is read. The field this replaced, `t`, carried an
+    // absolute browser timestamp, which clears any duration floor on its own,
+    // so accepting it let a caller skip this guard by sending one number.
+    // Missing or under 2 s means a script, not a person; answer like the
+    // honeypot does.
+    const elapsedMs = fields.elapsedMs;
     if (
       typeof elapsedMs !== 'number' ||
       !Number.isFinite(elapsedMs) ||
