@@ -60,6 +60,15 @@ function escapeHtml(s: string | null | undefined): string {
     .replace(/'/g, '&#39;');
 }
 
+// --- Submitter confirmation ---
+// Fixed copy. Interpolating any submitted field into this body would reopen
+// the hole it was written to close, so it takes no arguments.
+const CONFIRMATION_HTML = `
+      <h2>Thank you for contacting Steeple Lofts</h2>
+      <p>We have received your inquiry and our leasing team will be in touch shortly.</p>
+      <p>To reach us sooner, call the leasing office at <a href="tel:2156134190">215-613-4190</a>.</p>
+    `;
+
 // --- Validation ---
 const LIMITS = { name: 200, email: 254, phone: 50, message: 5000, moveInDate: 10 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -171,10 +180,14 @@ export async function POST(request: NextRequest) {
       <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
     `;
 
+    // The enquiry itself goes to the leasing office only. The submitter's
+    // address is caller-supplied, so it must never share a send with
+    // caller-authored text: a cc here would let anyone deliver a message they
+    // wrote to a mailbox they chose, sent from this building's domain and
+    // charged to its Resend quota.
     const { data, error } = await resend.emails.send({
       from: 'Steeple Lofts <noreply@steepleapartments.com>',
       to: ['leasing@madisonparke.com'],
-      cc: [email],
       subject: 'New Inquiry from Steeple Lofts',
       html: emailContent,
     });
@@ -182,6 +195,25 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Resend API error:', error);
       return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+    }
+
+    // Acknowledge the submitter separately, with a fixed body. Nothing the
+    // caller typed appears in it, so the worst this send can do is deliver
+    // these three lines to an address someone chose.
+    // The lead is already safely with leasing, so a failure here is logged and
+    // swallowed rather than reported as a failed submission.
+    try {
+      const { error: confirmationError } = await resend.emails.send({
+        from: 'Steeple Lofts <noreply@steepleapartments.com>',
+        to: [email],
+        subject: 'We received your inquiry',
+        html: CONFIRMATION_HTML,
+      });
+      if (confirmationError) {
+        console.error('Contact API: confirmation send failed', confirmationError);
+      }
+    } catch (confirmationThrow) {
+      console.error('Contact API: confirmation send threw', confirmationThrow);
     }
 
     return NextResponse.json(
